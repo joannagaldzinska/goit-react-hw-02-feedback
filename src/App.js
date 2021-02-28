@@ -33,7 +33,7 @@ export default class App extends Component {
   };
 
   render() {
-    const { good, neutral, bad, total } = this.state;
+    const { good, neutral, bad } = this.state;
     const countPositiveFeedbackPercentage = () => {
       return Math.round((100 * good) / (bad + neutral + good));
     };
