@@ -1,36 +1,40 @@
 // import PropTypes from 'prop-types';
 import Statistics from './components/Statistics';
-import LeaveFeedbackOptions from './components/FeedbackOptions';
+import FeedbackOptions from './components/FeedbackOptions';
 import Section from './components/Section';
 import Notification from './components/Notification';
-import React, { Component } from 'react';
+import { Component } from 'react';
+import { OPTIONS } from './components/FeedbackOptions/options';
 
 export default class App extends Component {
-  constructor() {
-    super();
+  state = {
+    good: 1,
+    neutral: 0,
+    bad: 0,
+  };
 
-    this.state = {
-      good: 0,
-      neutral: 0,
-      bad: 0,
-    };
-  }
+  handleIncrement = ({ target }) => {
+    const { feedback } = target.dataset;
+    console.log(feedback);
 
-  handleGoodIncrement = () => {
-    this.setState(prevState => ({
-      good: prevState.good + 1,
-    }));
+    this.setState(prevState => ({ [feedback]: prevState[feedback] + 1 }));
   };
-  handleNeutralIncrement = () => {
-    this.setState(prevState => ({
-      neutral: prevState.neutral + 1,
-    }));
-  };
-  handleBadIncrement = () => {
-    this.setState(prevState => ({
-      bad: prevState.bad + 1,
-    }));
-  };
+
+  // handleGoodIncrement = () => {
+  //   this.setState(prevState => ({
+  //     good: prevState.good + 1,
+  //   }));
+  // };
+  // handleNeutralIncrement = () => {
+  //   this.setState(prevState => ({
+  //     neutral: prevState.neutral + 1,
+  //   }));
+  // };
+  // handleBadIncrement = () => {
+  //   this.setState(prevState => ({
+  //     bad: prevState.bad + 1,
+  //   }));
+  // };
 
   render() {
     const { good, neutral, bad } = this.state;
@@ -44,10 +48,9 @@ export default class App extends Component {
     return (
       <div className="App">
         <Section title="Please leave feedback">
-          <LeaveFeedbackOptions
-            onGood={this.handleGoodIncrement}
-            onNeutral={this.handleNeutralIncrement}
-            onBad={this.handleBadIncrement}
+          <FeedbackOptions
+            options={OPTIONS}
+            onLeaveFeedback={this.handleIncrement}
           />
         </Section>
 

@@ -1,11 +1,16 @@
-const LeaveFeedbackOptions = ({ onGood, onBad, onNeutral }) => {
+const Button = ({ feedback, onLeaveFeedback }) => {
   return (
-    <div>
-      <button onClick={onGood}>Good</button>
-      <button onClick={onNeutral}>Neutral</button>
-      <button onClick={onBad}>Bad</button>
-    </div>
+    <button type="button" data-feedback={feedback} onClick={onLeaveFeedback}>
+      {' '}
+      {feedback}{' '}
+    </button>
   );
 };
 
-export default LeaveFeedbackOptions;
+const FeedbackOptions = ({ options, onLeaveFeedback }) => {
+  return options.map(option => (
+    <Button feedback={option} onLeaveFeedback={onLeaveFeedback} />
+  ));
+};
+
+export default FeedbackOptions;
