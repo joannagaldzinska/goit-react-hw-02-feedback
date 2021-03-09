@@ -4,18 +4,19 @@ import FeedbackOptions from './components/FeedbackOptions';
 import Section from './components/Section';
 import Notification from './components/Notification';
 import { Component } from 'react';
-import { OPTIONS } from './components/FeedbackOptions/options';
+
+const OPTIONS = ['good', 'neutral', 'bad'];
 
 export default class App extends Component {
   state = {
-    good: 1,
+    good: 0,
     neutral: 0,
     bad: 0,
   };
 
-  handleIncrement = ({ target }) => {
-    const { feedback } = target.dataset;
-    console.log(feedback);
+  handleIncrement = ({ currentTarget }) => {
+    const { feedback } = currentTarget.dataset;
+    console.log(currentTarget);
 
     this.setState(prevState => ({ [feedback]: prevState[feedback] + 1 }));
   };
